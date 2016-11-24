@@ -1,0 +1,10 @@
+#ifndef GAMEPROJECT_ANIMATION_H
+#define GAMEPROJECT_ANIMATION_H
+
+
+class Animation {
+
+};
+
+
+#endif //GAMEPROJECT_ANIMATION_H
