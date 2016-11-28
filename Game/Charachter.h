@@ -2,7 +2,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "Direction.h"
+#include "../Other/Direction.h"
 #include "Map.h"
 #include <stack>
 
@@ -11,20 +11,12 @@ private:
     sf::RectangleShape* pacman; // текстура
     sf::Color* color; // цвет пакмана
     Direction direction;
-    Direction predirection;
     sf::Clock clock;
     float time;
     Map* map;
     const sf::String* pMap;
-
-    // с урока
-    /*
-     * x, y - координаты
-     * w, h - высота и ширина
-     * dx, dy - ускорения по x и y соответственно
-     * speed - скорость
-     */
     float x, y, w, h, dx, dy, speed;
+    int PosX, PosY;
     std::stack<Direction> stack; // стэк операций
     bool isCollision();
     void resolveCollision(bool);

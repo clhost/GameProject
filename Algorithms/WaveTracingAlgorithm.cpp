@@ -1,0 +1,72 @@
+#include <iostream>
+#include "WaveTracingAlgorithm.h"
+
+WaveTracingAlgorithm &WaveTracingAlgorithm::Instance() {
+    static WaveTracingAlgorithm object;
+    return object;
+}
+
+bool WaveTracingAlgorithm::findPath(int sx, int sy, int ex, int ey) {
+    int dx[4] = {1, 0, -1, 0}; // смещения (окрестность фон Неймона)
+    int dy[4] = {0, 1, 0, -1};
+
+    int d, x, y, k; // итерационные переменные
+    bool stop;
+
+    if (Grid[sy][sx] == WALL || Grid[ey][ex] == WALL) return false;
+
+    // распространение волны
+    d = 0;
+    Grid[sy][sx] = 0;
+
+    do {
+        stop = true;
+        for (y = 0; y < height; ++y) {
+            for (x = 0; x < width; ++x) {
+                if (Grid[y][x] == d) {
+                    for (k = 0; k < 4; ++k) {
+                        int iy = y + dy[k], ix = x + dx[k];
+                        if (iy >= 0 && iy < height &&
+                            ix >= 0 && ix < width &&
+                                Grid[iy][ix] == BLANK) {
+                            stop = false;
+                            Grid[iy][ix] = d + 1;
+                        }
+                    }
+                }
+            }
+        }
+        d++;
+    } while (!stop && Grid[ey][ex] == BLANK);
+
+    if (Grid[ey][ex] == BLANK) return false; // путь не найден
+
+    // восстановление пути
+    length = Grid[ey][ex];
+    std::cout << length << std::endl;
+    x = ex;
+    y = ey;
+
+    d = length;
+
+    while (d > 0) {
+        px[d] = x; // записали ячейку в путь
+        py[d] = y;
+        d--;
+
+        for (k = 0; k < 4; ++k) {
+            int iy = y + dy[k], ix = x + dx[k];
+            if (iy >= 0 && iy < height &&
+                ix >= 0 && ix < width &&
+                Grid[iy][ix] == d) {
+                x = x + dx[k];
+                y = y + dy[k];
+                break;
+            }
+        }
+    }
+    px[0] = sx;
+    py[0] = sy;
+
+    return true;
+}

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "Direction.h"
+#include "../Other/Direction.h"
 
 class Enemy {
 private:

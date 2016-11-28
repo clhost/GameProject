@@ -47,7 +47,6 @@ void Charachter::update(float time) {
     }
     x += dx * time;
     y += dy * time;
-    //speed = 0;
     resolveCollision(isCollision());
     pacman->setPosition(x, y);
 }
@@ -58,24 +57,24 @@ bool Charachter::isCollision() {
 
     /* текущее положение пакмана на сетке */
     if (direction == RIGHT) {
-        int rightPosX = (int) floor((x + 24) / 24);
-        int rightPosY = (int) floor((y + 12) / 24);
-        if (map->cellMap[rightPosY][rightPosX].condition == IMPASSABLE) return true;
+        PosX = (int) floor((x + 24) / 24);
+        PosY = (int) floor((y + 12) / 24);
+        if (map->cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     else if (direction == DOWN) {
-        int downPosX = (int) floor((x + 12) / 24);
-        int downPosY = (int) floor((y + 24) / 24);
-        if (map->cellMap[downPosY][downPosX].condition == IMPASSABLE) return true;
+        PosX = (int) floor((x + 12) / 24);
+        PosY = (int) floor((y + 24) / 24);
+        if (map->cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     else if (direction == LEFT) {
-        int leftPosX = (int) floor(x / 24);
-        int leftPosY = (int) floor((y + 12) / 24);
-        if (map->cellMap[leftPosY][leftPosX].condition == IMPASSABLE) return true;
+        PosX = (int) floor(x / 24);
+        PosY = (int) floor((y + 12) / 24);
+        if (map->cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     else if (direction == UP) {
-        int upPosX = (int) floor((x + 12) / 24);
-        int upPosY = (int) floor(y / 24);
-        if (map->cellMap[upPosY][upPosX].condition == IMPASSABLE) return true;
+        PosX = (int) floor((x + 12) / 24);
+        PosY = (int) floor(y / 24);
+        if (map->cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     return false;
 }
@@ -84,24 +83,24 @@ void Charachter::resolveCollision(bool f) {
     if (f) {
         std::cout << "Collision\n";
         if (direction == LEFT) {
-            int leftPosX = (int) floor(x / 24);
-            int leftPosY = (int) floor((y + 12) / 24);
-            x = map->cellMap[leftPosY][leftPosX].uR.x; //останавливаем движение по х влево
+            PosX = (int) floor(x / 24);
+            PosY = (int) floor((y + 12) / 24);
+            x = map->cellMap[PosY][PosX].uR.x; //останавливаем движение по х влево
         }
         if (direction == RIGHT) {
-            int rightPosX = (int) floor((x + 24) / 24);
-            int rightPosY = (int) floor((y + 12) / 24);
-            x = map->cellMap[rightPosY][rightPosX].uL.x - 24; //останавливаем движение по х вправо
+            PosX = (int) floor((x + 24) / 24);
+            PosY = (int) floor((y + 12) / 24);
+            x = map->cellMap[PosY][PosX].uL.x - 24; //останавливаем движение по х вправо
         }
         if (direction == DOWN) {
-            int downPosX = (int) floor((x + 12) / 24);
-            int downPosY = (int) floor((y + 24) / 24);
-            y = map->cellMap[downPosY][downPosX].uL.y - 24; //останавливаем движение по y вниз
+            PosX = (int) floor((x + 12) / 24);
+            PosY = (int) floor((y + 24) / 24);
+            y = map->cellMap[PosY][PosX].uL.y - 24; //останавливаем движение по y вниз
         }
         if (direction == UP) {
-            int upPosX = (int) floor((x + 12) / 24);
-            int upPosY = (int) floor(y / 24);
-            y = map->cellMap[upPosY][upPosX].uR.y; //останавливаем движение по y вверх
+            PosX = (int) floor((x + 12) / 24);
+            PosY = (int) floor(y / 24);
+            y = map->cellMap[PosY][PosX].uR.y; //останавливаем движение по y вверх
         }
         direction = STAY;
     } else return;

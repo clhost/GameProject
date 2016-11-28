@@ -3,6 +3,7 @@
 Game::Game() {
     window = new sf::RenderWindow(sf::VideoMode(600, 600), "Pacman");
     window->setPosition(sf::Vector2i(400, 400));
+    menu = new Menu(); // <========
     map = new Map();
     pacman = new Charachter(264, 456, 24, 24, map); // 264, 456
     blinky = new Enemy(264, 264, new sf::Color(239, 83, 80)); // красный
@@ -25,6 +26,8 @@ void Game::run() {
         /* отрисовка меню */
         if (state == onMenu) {
             window->clear();
+            menu->display(window);
+            menu->start();
             window->display();
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) state = onResume;
         }

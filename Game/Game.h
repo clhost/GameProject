@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Charachter.h"
 #include "Enemy.h"
+#include "../Menu/Menu.h"
 
 enum GameState {
     onResume,
@@ -13,7 +14,7 @@ enum GameState {
 
 class Game {
     sf::RenderWindow *window; //Окно игры
-    sf::RenderWindow *menu; //Окно меню
+    Menu *menu; //Окно меню
     Map* map;
     Charachter* pacman;
     Enemy* blinky;

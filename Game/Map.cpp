@@ -1,6 +1,6 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include "Map.h"
-#include "Point.h"
+#include "../Other/Point.h"
 
 Map::Map() {
     rect = new sf::RectangleShape(sf::Vector2f(24, 24));

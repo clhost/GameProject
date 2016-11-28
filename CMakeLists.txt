@@ -3,7 +3,7 @@ project(GameProject)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp Game.cpp Game.h Map.cpp Map.h Charachter.cpp Charachter.h Animation.cpp Animation.h Direction.h Enemy.cpp Enemy.h Point.h Menu/Menu.cpp Menu/Menu.h)
+set(SOURCE_FILES main.cpp Game/Game.cpp Game/Game.h Game/Map.cpp Game/Map.h Game/Charachter.cpp Game/Charachter.h Animation.cpp Animation.h Other/Direction.h Game/Enemy.cpp Game/Enemy.h Other/Point.h Menu/Menu.cpp Menu/Menu.h Algorithms/WaveTracingAlgorithm.cpp Algorithms/WaveTracingAlgorithm.h)
 set(EXECUTABLE_NAME "GameProject")
 add_executable(GameProject ${SOURCE_FILES})
 

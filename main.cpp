@@ -1,12 +1,20 @@
-#include "Game.h"
+#include <iostream>
+#include "Game/Game.h"
+#include "Algorithms/WaveTracingAlgorithm.h"
 
 int main() {
 
-    /*Menu* menu = new Menu();
-    menu->run();*/
+    //Game* game = new Game();
+    //game->run();
 
-    Game* game = new Game();
-    game->run();
+    /* test Li algorithm */
 
+    /* get reference to algorithm class */
+    WaveTracingAlgorithm& algorithm = WaveTracingAlgorithm::Instance();
+    algorithm.findPath(1, 1, 23, 23);
+    for (int i = 0; i < 44; ++i) {
+
+    std::cout << algorithm.px[i] << " | " << algorithm.py[i] << std::endl;
+    }
     return 0;
 }

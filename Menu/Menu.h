@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Menu {
     /*sf::Texture* startGame;
@@ -15,9 +16,11 @@ class Menu {
     sf::RectangleShape* highScores;
     sf::RectangleShape* exit;
     sf::Color* color;
+    sf::Color* defaultColor;
 public:
     Menu();
-    void display();
+    void display(sf::RenderWindow*);
+    void start();
 };
 
 
