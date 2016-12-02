@@ -7,18 +7,42 @@ Map::Map() {
     colorWall = new sf::Color(63, 81, 181);
     colorSpace = new sf::Color(0, 0, 0);
     colorExit = new sf::Color(255, 245, 157);
+    createCellMap();
 }
 
 void Map::draw(sf::RenderWindow *window) {
 
-    /** пока что так **/
+    for (int i = 0; i < Map::HEIGHT_MAP; i++) {
+        for (int j = 0; j < Map::WEIGHT_MAP; j++) {
+
+            /* стена */
+            if (map[i][j] == '1') { rect->setFillColor(*colorWall); }
+
+            /* бонус */
+            if (map[i][j] == '0' || map[i][j] == ' ' || map[i][j] == '.') { rect->setFillColor(*colorSpace); }
+
+            /* дверь */
+            if (map[i][j] == 'e') { rect->setFillColor(*colorExit); }
+
+            /* пустота */
+            if (map[i][j] == ' ') { rect->setFillColor(*colorSpace); }
+
+            /* еда */
+            if (map[i][j] == '.') { rect->setFillColor(*colorSpace); }
+
+            rect->setPosition(j*24, i*24);
+            window->draw(*rect);
+        }
+    }
+}
+
+/* билдится 1 раз */
+void Map::createCellMap() {
     for (int i = 0; i < Map::HEIGHT_MAP; i++) {
         for (int j = 0; j < Map::WEIGHT_MAP; j++) {
 
             /* стена */
             if (map[i][j] == '1') {
-                rect->setFillColor(*colorWall);
-
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
@@ -30,8 +54,6 @@ void Map::draw(sf::RenderWindow *window) {
 
             /* бонус */
             if (map[i][j] == '0' || map[i][j] == ' ' || map[i][j] == '.') {
-                rect->setFillColor(*colorSpace);
-
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
@@ -42,8 +64,6 @@ void Map::draw(sf::RenderWindow *window) {
 
             /* дверь */
             if (map[i][j] == 'e') {
-                rect->setFillColor(*colorExit);
-
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
@@ -54,8 +74,6 @@ void Map::draw(sf::RenderWindow *window) {
 
             /* пустота */
             if (map[i][j] == ' ') {
-                rect->setFillColor(*colorSpace);
-
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
@@ -66,8 +84,6 @@ void Map::draw(sf::RenderWindow *window) {
 
             /* еда */
             if (map[i][j] == '.') {
-                rect->setFillColor(*colorSpace);
-
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
@@ -75,9 +91,7 @@ void Map::draw(sf::RenderWindow *window) {
                 cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
                 cellMap[i][j].condition = PASSABLE;
             }
-
-            rect->setPosition(j*24, i*24);
-            window->draw(*rect);
         }
     }
 }
+

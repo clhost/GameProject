@@ -11,7 +11,8 @@ class WaveTracingAlgorithm {
     const static int BLANK = -2;
 
     int length; // длина пути
-    int Grid[height][width] = {
+    int Grid[height][width];
+    int G[height][width] = {
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1},
             {-1,-2,-1,-1,-1,-1,-2,-1,-1,-1,-1,-2,-1,-2,-1,-1,-1,-1,-2,-1,-1,-1,-1,-2,-1},
@@ -40,12 +41,14 @@ class WaveTracingAlgorithm {
     }; // рабочее поле
 public:
     int px[width * height], py[width * height]; // координаты ячеек, входящих в путь
-    static WaveTracingAlgorithm& Instance();
+    int size;
+    //static WaveTracingAlgorithm& Instance();
     bool findPath(int sx, int sy, int ex, int ey);
 private:
-    WaveTracingAlgorithm() {}
+    void arrayCopy();
+    /*WaveTracingAlgorithm() {}
     ~WaveTracingAlgorithm() {}
 
     WaveTracingAlgorithm(WaveTracingAlgorithm const&) = delete;
-    WaveTracingAlgorithm&operator=(WaveTracingAlgorithm const&) = delete;
+    WaveTracingAlgorithm&operator=(WaveTracingAlgorithm const&) = delete;*/
 };

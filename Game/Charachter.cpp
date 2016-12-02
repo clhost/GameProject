@@ -1,5 +1,3 @@
-#include <iostream>
-#include <cmath>
 #include "Charachter.h"
 
 Charachter::Charachter(int X, int Y, int W, int H, Map* m) {
@@ -53,9 +51,6 @@ void Charachter::update(float time) {
 
 bool Charachter::isCollision() {
 
-    /** работа с картой напрямую (переписать) **/
-
-    /* текущее положение пакмана на сетке */
     if (direction == RIGHT) {
         PosX = (int) floor((x + 24) / 24);
         PosY = (int) floor((y + 12) / 24);
@@ -81,7 +76,6 @@ bool Charachter::isCollision() {
 
 void Charachter::resolveCollision(bool f) {
     if (f) {
-        std::cout << "Collision\n";
         if (direction == LEFT) {
             PosX = (int) floor(x / 24);
             PosY = (int) floor((y + 12) / 24);
@@ -104,4 +98,12 @@ void Charachter::resolveCollision(bool f) {
         }
         direction = STAY;
     } else return;
+}
+
+float Charachter::getX() {
+    return x;
+}
+
+float Charachter::getY() {
+    return y;
 }

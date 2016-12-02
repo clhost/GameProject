@@ -15,15 +15,19 @@ private:
     float time;
     Map* map;
     const sf::String* pMap;
-    float x, y, w, h, dx, dy, speed;
     int PosX, PosY;
     std::stack<Direction> stack; // стэк операций
     bool isCollision();
     void resolveCollision(bool);
     void update(float);
+    float x, y, w, h, dx, dy, speed;
 
 public:
-    void run();
-    void draw(sf::RenderWindow *);
+    virtual void run();
+    virtual void draw(sf::RenderWindow *);
     Charachter(int, int, int, int, Map*);
+    Charachter() {}
+    float getX();
+    float getY();
 };
+

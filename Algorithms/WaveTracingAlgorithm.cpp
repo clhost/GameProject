@@ -1,12 +1,13 @@
 #include <iostream>
 #include "WaveTracingAlgorithm.h"
 
-WaveTracingAlgorithm &WaveTracingAlgorithm::Instance() {
+/*WaveTracingAlgorithm &WaveTracingAlgorithm::Instance() {
     static WaveTracingAlgorithm object;
     return object;
-}
+}*/
 
 bool WaveTracingAlgorithm::findPath(int sx, int sy, int ex, int ey) {
+    arrayCopy();
     int dx[4] = {1, 0, -1, 0}; // смещения (окрестность фон Неймона)
     int dy[4] = {0, 1, 0, -1};
 
@@ -43,11 +44,11 @@ bool WaveTracingAlgorithm::findPath(int sx, int sy, int ex, int ey) {
 
     // восстановление пути
     length = Grid[ey][ex];
-    std::cout << length << std::endl;
     x = ex;
     y = ey;
 
     d = length;
+    size = length + 1;
 
     while (d > 0) {
         px[d] = x; // записали ячейку в путь
@@ -68,5 +69,22 @@ bool WaveTracingAlgorithm::findPath(int sx, int sy, int ex, int ey) {
     px[0] = sx;
     py[0] = sy;
 
+    /*for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            if (Grid[i][j] < 10 && Grid[i][j] > -1) std::cout << " " <<  Grid[i][j] << "  ";
+            else std::cout << Grid[i][j] << "  ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;*/
     return true;
+}
+
+/* затратно переписать */
+void WaveTracingAlgorithm::arrayCopy() {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            Grid[i][j] = G[i][j];
+        }
+    }
 }

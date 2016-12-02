@@ -40,6 +40,7 @@ private:
             "1.......................1",
             "1111111111111111111111111"
     };
+    void createCellMap();
 public:
     Map();
     void draw(sf::RenderWindow *);
