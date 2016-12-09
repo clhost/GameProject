@@ -4,6 +4,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../Other/Point.h"
 #include <string>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 class Map {
     const static int HEIGHT_MAP = 25; // 25
@@ -13,7 +15,12 @@ private:
     sf::Color* colorWall; // цвет стен (синий)
     sf::Color* colorSpace; // цвет пустоты (черный)
     sf::Color* colorExit; // цвет двери дома призраков (желтый)
-    const std::string map[HEIGHT_MAP] = {
+
+    sf::Texture texture; // точка
+    sf::Sprite sprite; // спрайт точки
+    void createCellMap();
+public:
+    std::string map[HEIGHT_MAP] = {
             "1111111111111111111111111",
             "1...........1...........1",
             "1.1111.1111.1.1111.1111.1",
@@ -40,8 +47,6 @@ private:
             "1.......................1",
             "1111111111111111111111111"
     };
-    void createCellMap();
-public:
     Map();
     void draw(sf::RenderWindow *);
     Cell cellMap[HEIGHT_MAP][WEIGHT_MAP];

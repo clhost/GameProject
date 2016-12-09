@@ -2,17 +2,15 @@
 
 #include <string>
 
-/* use singleton pattern */
-
 class WaveTracingAlgorithm {
-    const static int width = 25; // размеры карты неизменны
+    const static int width = 25;
     const static int height = 25;
     const static int WALL = -1;
     const static int BLANK = -2;
 
-    int length; // длина пути
+    int length;
     int Grid[height][width];
-    int G[height][width] = {
+    int G[height][width] = { // рабочее поле
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1},
             {-1,-2,-1,-1,-1,-1,-2,-1,-1,-1,-1,-2,-1,-2,-1,-1,-1,-1,-2,-1,-1,-1,-1,-2,-1},
@@ -38,17 +36,11 @@ class WaveTracingAlgorithm {
             {-1,-2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-2,-1,-2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-2,-1},
             {-1,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-2,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
-    }; // рабочее поле
+    };
 public:
     int px[width * height], py[width * height]; // координаты ячеек, входящих в путь
     int size;
-    //static WaveTracingAlgorithm& Instance();
     bool findPath(int sx, int sy, int ex, int ey);
 private:
     void arrayCopy();
-    /*WaveTracingAlgorithm() {}
-    ~WaveTracingAlgorithm() {}
-
-    WaveTracingAlgorithm(WaveTracingAlgorithm const&) = delete;
-    WaveTracingAlgorithm&operator=(WaveTracingAlgorithm const&) = delete;*/
 };

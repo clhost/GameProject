@@ -12,7 +12,9 @@ struct Point {
 enum Condition {
     PASSABLE,
     IMPASSABLE,
-    DOOR
+    DOOR,
+    FOOD,
+    SUPERFOOD
 };
 
 class Cell {
@@ -20,8 +22,6 @@ public:
     Point uL;
     Point uR;
     Condition condition;
-    /*int gridColumn;
-    int gridRow;*/
 
     Cell(){}
 };

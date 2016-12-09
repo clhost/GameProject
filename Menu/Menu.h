@@ -1,7 +1,6 @@
 #ifndef GAMEPROJECT_MENU_H
 #define GAMEPROJECT_MENU_H
 
-
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>

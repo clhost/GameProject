@@ -5,29 +5,35 @@
 #include "../Other/Direction.h"
 #include "Map.h"
 #include <stack>
+#include <SFML/Graphics/Sprite.hpp>
 
 class Charachter {
 private:
+    sf::Texture texture;
+    //sf::Sprite pacman;
+
     sf::RectangleShape* pacman; // текстура
     sf::Color* color; // цвет пакмана
     Direction direction;
+    Direction predirection;
     sf::Clock clock;
+    int scores; // количество очков
     float time;
     Map* map;
-    const sf::String* pMap;
     int PosX, PosY;
-    std::stack<Direction> stack; // стэк операций
     bool isCollision();
     void resolveCollision(bool);
     void update(float);
+    void eat();
     float x, y, w, h, dx, dy, speed;
 
 public:
-    virtual void run();
-    virtual void draw(sf::RenderWindow *);
+    void run();
+    void draw(sf::RenderWindow *);
     Charachter(int, int, int, int, Map*);
     Charachter() {}
     float getX();
     float getY();
+    Direction getDirection();
+    int getScores();
 };
-

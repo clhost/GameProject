@@ -4,6 +4,11 @@
 #include "Charachter.h"
 #include "Enemy.h"
 #include "../Menu/Menu.h"
+#include "Ghosts/Blinky.h"
+#include "Ghosts/Pinky.h"
+#include "Ghosts/Inkey.h"
+#include "Ghosts/Clyde.h"
+#include "../Animation.h"
 
 enum GameState {
     onResume,
@@ -13,14 +18,15 @@ enum GameState {
 };
 
 class Game {
-    sf::RenderWindow *window; //Окно игры
-    Menu *menu; //Окно меню
+    sf::RenderWindow *window; // окно игры
+    Menu *menu; // окно меню
     Map* map;
+    Animation* animation;
     Charachter* pacman;
-    Enemy* blinky;
-    Enemy* pinky;
-    Enemy* inkey;
-    Enemy* clyde;
+    Blinky* blinky;
+    Pinky* pinky;
+    Inkey* inkey;
+    Clyde* clyde;
     GameState state;
 public:
     void run();

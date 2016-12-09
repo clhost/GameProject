@@ -1,74 +1,71 @@
 #include <iostream>
-#include <SFML/Window/Keyboard.hpp>
 #include "Enemy.h"
 
-Enemy::Enemy(int X, int Y, int W, int H, sf::Color *col, Map *m, Charachter* charachter) {
-    pacman = charachter;
+Enemy::Enemy(int X, int Y, int W, int H, Charachter* charachter, Map* m) {
     map = m;
+    pacman = charachter;
     x = X; y = Y; w = W; h = H;
     dx = 0; dy = 0; speed = 0;
-    ghost = new sf::RectangleShape(sf::Vector2f(w, h));
-    //color = new sf::Color(255, 235, 59);
-    color = col;
-    ghost->setFillColor(*color);
-    ghost->setPosition(x, y);
     direction = STAY;
     i = 0;
     f = true;
-    //algorithm = new WaveTracingAlgorithm();
+
+    initSpeed = 0.1;
 
     PosX = (int) floor((x + 12) / 24);
     PosY = (int) floor((y + 12) / 24);
 
-    a = 23, b = 23;
+    // инициализация квадрантов
+    initQuadrants();
 }
 
-/** Этот метод щас делаю **/
 void Enemy::run() {
     time = clock.getElapsedTime().asMicroseconds();
     clock.restart();
     time = time / 800;
 
-    if (direction == RIGHT) { // LEFT
+    /*std::cout << PosX << " | " << floor((pacman->getX() + 12) / 24) << std::endl;
+    std::cout << PosY << " | " << floor((pacman->getY() + 12) / 24) << std::endl;
+    // пересечение с пакманом
+    if (PosX == floor((pacman->getX() + 12) / 24) &&
+        PosY == floor(pacman->getY() + 12) / 24) {
+        std::cout << PosX << " | " << floor((pacman->getX() + 12) / 24) << std::endl;
+        std::cout << PosY << " | " << floor((pacman->getY() + 12) / 24) << std::endl;
+    }*/
+
+    if (direction == RIGHT) {
         PosX = (int) floor(x / 24);
         PosY = (int) floor((y + 12) / 24);
     }
-    if (direction == LEFT) { // RIGHT
+    if (direction == LEFT) {
         PosX = (int) floor((x + 24) / 24);
         PosY = (int) floor((y + 12) / 24);
     }
-    if (direction == UP) { // DOWN
+    if (direction == UP) {
         PosX = (int) floor((x + 12) / 24);
         PosY = (int) floor((y + 24) / 24);
     }
-    if (direction == DOWN) { // UP
+    if (direction == DOWN) {
         PosX = (int) floor((x + 12) / 24);
         PosY = (int) floor(y / 24);
     }
 
-    if (f) {
-        //std::cout << PosX << " | " << PosY << "\n";
-        algorithm.findPath(PosX, PosY, (int) floor((pacman->getX() + 12) / 24), (int) floor((pacman->getY() + 12) / 24));
-        f = false;
-    }
+    // f - чтобы не пересчитывать путь каждый раз
+    //scaryMode();
+    findPath(f);
 
-    //std::cout << (int) floor((Charachter::x + 12) / 24) << " | " << (int) floor((Charachter::y + 12) / 24) << "\n";
-    //std::cout << (int) floor((pacman->getX() + 12) / 24) << " | " << (int) floor((pacman->getY() + 12) / 24) << "\n";
-
-    int currX, currY;
-    int nextX, nextY;
-    int end = algorithm.size;
-
-    //std::cout << i << " | " << end - 1 << std::endl;
+    int currX, currY; // текущая клетка в пути, где находится привидение
+    int nextX, nextY; // следующая клетка пути, где находится привидение
+    int end = algorithm.size; // размер пути
 
     currX = algorithm.px[i];
     currY = algorithm.py[i];
     nextX = algorithm.px[i + 1];
     nextY = algorithm.py[i + 1];
 
-    /* самая важная строчка этого алгоритма */
-    if (PosX == nextX && PosY == nextY) i++;
+    if (PosX == nextX && PosY == nextY) i++; // переход к следующей клетке пути
 
+    // поведение привидения на каждом шаге
     if (i < end - 1) {
         if (nextX - currX == 1) { direction = RIGHT; }
         if (nextX - currX == -1) { direction = LEFT; }
@@ -76,25 +73,21 @@ void Enemy::run() {
         if (nextY - currY == -1) { direction = UP; }
 
 
-        if (direction == RIGHT) speed = 0.1;
-        if (direction == LEFT) speed = 0.1;
-        if (direction == UP) speed = 0.1;
-        if (direction == DOWN) speed = 0.1;
+        if (direction == RIGHT) speed = initSpeed;
+        if (direction == LEFT) speed = initSpeed;
+        if (direction == UP) speed = initSpeed;
+        if (direction == DOWN) speed = initSpeed;
         if (direction == STAY) speed = 0;
     }
+
     update(time);
 
+    // если достигнут конец пути, остановится и обнулить i для поиска возможного дальнейшего пути
     if (i == end - 1) {
         direction = STAY;
         f = true;
-        a = 1;
-        b = 1;
         i = 0;
     }
-}
-
-void Enemy::draw(sf::RenderWindow* window) {
-    window->draw(*ghost);
 }
 
 void Enemy::update(float) {
@@ -107,5 +100,89 @@ void Enemy::update(float) {
     }
     x += dx * time;
     y += dy * time;
-    ghost->setPosition(x, y);
+    sprite.setPosition(x, y);
+}
+
+void Enemy::findPath(bool f) {
+    if (f) {
+        algorithm.findPath(PosX, PosY, (int) floor((pacman->getX() + 12) / 24), (int) floor((pacman->getY() + 12) / 24));
+        Enemy::f = false;
+    }
+}
+
+void Enemy::initQuadrants() {
+    first[0].x = 18;
+    first[0].y = 1;
+
+    first[1].x = 23;
+    first[1].y = 5;
+
+    first[2].x = 18;
+    first[2].y = 8;
+
+    first[3].x = 16;
+    first[3].y = 5;
+
+    second[0].x = 18;
+    second[0].y = 12;
+
+    second[1].x = 17;
+    second[1].y = 19;
+
+    second[2].x = 21;
+    second[2].y = 21;
+
+    second[3].x = 13;
+    second[3].y = 23;
+
+    third[0].x = 6;
+    third[0].y = 12;
+
+    third[1].x = 7;
+    third[1].y = 19;
+
+    third[2].x = 3;
+    third[2].y = 21;
+
+    third[3].x = 11;
+    third[3].y = 23;
+
+    fourth[0].x = 6;
+    fourth[0].y = 1;
+
+    fourth[1].x = 1;
+    fourth[1].y = 5;
+
+    fourth[2].x = 8;
+    fourth[2].y = 5;
+
+    fourth[3].x = 6;
+    fourth[3].y = 7;
+}
+
+Direction Enemy::getDirection() {
+    return direction;
+}
+
+void Enemy::setSprite(sf::IntRect s) {
+    sprite.setTextureRect(s);
+}
+
+int Enemy::getIndex() {
+    return index;
+}
+
+sf::Sprite Enemy::getSprite() {
+    return sprite;
+}
+
+void Enemy::scaryMode() {
+
+    if (map->cellMap[19][23].condition == PASSABLE /*||
+        map->cellMap[19][1].condition == PASSABLE ||
+        map->cellMap[3][1].condition == PASSABLE ||
+        map->cellMap[3][23].condition == PASSABLE*/) {
+
+        initSpeed = 0.05;
+    }
 }

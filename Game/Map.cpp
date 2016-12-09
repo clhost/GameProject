@@ -7,6 +7,9 @@ Map::Map() {
     colorWall = new sf::Color(63, 81, 181);
     colorSpace = new sf::Color(0, 0, 0);
     colorExit = new sf::Color(255, 245, 157);
+
+    texture.loadFromFile("/home/geek/ClionProjects/GameProject/Sprites/points.png");
+    sprite.setTexture(texture);
     createCellMap();
 }
 
@@ -15,33 +18,43 @@ void Map::draw(sf::RenderWindow *window) {
     for (int i = 0; i < Map::HEIGHT_MAP; i++) {
         for (int j = 0; j < Map::WEIGHT_MAP; j++) {
 
-            /* стена */
+            // стена
             if (map[i][j] == '1') { rect->setFillColor(*colorWall); }
 
-            /* бонус */
-            if (map[i][j] == '0' || map[i][j] == ' ' || map[i][j] == '.') { rect->setFillColor(*colorSpace); }
+            // бонус
+            if (map[i][j] == '0') {
+                sprite.setTextureRect((sf::IntRect(24, 0, 24, 24)));
+                sprite.setPosition(j * 24, i * 24);
+                window->draw(sprite);
+                continue;
+            }
 
-            /* дверь */
+            // дверь
             if (map[i][j] == 'e') { rect->setFillColor(*colorExit); }
 
-            /* пустота */
+            // пустота
             if (map[i][j] == ' ') { rect->setFillColor(*colorSpace); }
 
-            /* еда */
-            if (map[i][j] == '.') { rect->setFillColor(*colorSpace); }
+            // еда
+            if (map[i][j] == '.') {
+                sprite.setTextureRect((sf::IntRect(48, 0, 24, 24)));
+                sprite.setPosition(j * 24, i * 24);
+                window->draw(sprite);
+                continue;
+            }
 
-            rect->setPosition(j*24, i*24);
+            rect->setPosition(j * 24, i * 24);
             window->draw(*rect);
         }
     }
 }
 
-/* билдится 1 раз */
+// билдится 1 раз
 void Map::createCellMap() {
     for (int i = 0; i < Map::HEIGHT_MAP; i++) {
         for (int j = 0; j < Map::WEIGHT_MAP; j++) {
 
-            /* стена */
+            // стена
             if (map[i][j] == '1') {
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
@@ -52,17 +65,17 @@ void Map::createCellMap() {
 
             }
 
-            /* бонус */
+            // бонус
             if (map[i][j] == '0' || map[i][j] == ' ' || map[i][j] == '.') {
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
                 cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
                 cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = PASSABLE;
+                cellMap[i][j].condition = SUPERFOOD;
             }
 
-            /* дверь */
+            // дверь
             if (map[i][j] == 'e') {
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
@@ -72,7 +85,7 @@ void Map::createCellMap() {
                 cellMap[i][j].condition = DOOR;
             }
 
-            /* пустота */
+            // пустота
             if (map[i][j] == ' ') {
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
@@ -82,16 +95,15 @@ void Map::createCellMap() {
                 cellMap[i][j].condition = PASSABLE;
             }
 
-            /* еда */
+            // еда
             if (map[i][j] == '.') {
                 /* init cells */
                 cellMap[i][j].uL.x = j * 24;
                 cellMap[i][j].uL.y = i * 24;
                 cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
                 cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = PASSABLE;
+                cellMap[i][j].condition = FOOD;
             }
         }
     }
 }
-

@@ -1,10 +1,4 @@
-#include <iostream>
 #include "WaveTracingAlgorithm.h"
-
-/*WaveTracingAlgorithm &WaveTracingAlgorithm::Instance() {
-    static WaveTracingAlgorithm object;
-    return object;
-}*/
 
 bool WaveTracingAlgorithm::findPath(int sx, int sy, int ex, int ey) {
     arrayCopy();
@@ -69,18 +63,9 @@ bool WaveTracingAlgorithm::findPath(int sx, int sy, int ex, int ey) {
     px[0] = sx;
     py[0] = sy;
 
-    /*for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            if (Grid[i][j] < 10 && Grid[i][j] > -1) std::cout << " " <<  Grid[i][j] << "  ";
-            else std::cout << Grid[i][j] << "  ";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;*/
     return true;
 }
 
-/* затратно переписать */
 void WaveTracingAlgorithm::arrayCopy() {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {

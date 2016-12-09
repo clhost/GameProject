@@ -2,8 +2,12 @@
 #define GAMEPROJECT_ANIMATION_H
 
 
-class Animation {
+#include "Game/Enemy.h"
 
+class Animation {
+public:
+    Animation() {};
+    void draw(Enemy*, sf::RenderWindow*);
 };
 
 
