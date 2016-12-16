@@ -1,6 +1,4 @@
-#include <iostream>
 #include "Game/Game.h"
-#include "Algorithms/WaveTracingAlgorithm.h"
 
 int main() {
 
