@@ -19,7 +19,13 @@ private:
     sf::Texture texture; // точка
     sf::Sprite sprite; // спрайт точки
     void createCellMap();
+
+    Map();
+    ~Map() {};
+    Map(Map const&) = delete;
+    Map&operator=(Map const&) = delete;
 public:
+    static Map& Instance();
     std::string map[HEIGHT_MAP] = {
             "1111111111111111111111111",
             "1...........1...........1",
@@ -47,7 +53,6 @@ public:
             "1.......................1",
             "1111111111111111111111111"
     };
-    Map();
     void draw(sf::RenderWindow *);
-    Cell cellMap[HEIGHT_MAP][WEIGHT_MAP];
+    Cell* cellMap[HEIGHT_MAP][WEIGHT_MAP];
 };

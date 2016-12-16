@@ -9,31 +9,33 @@
 
 class Charachter {
 private:
-    sf::Texture texture;
-    //sf::Sprite pacman;
-
     sf::RectangleShape* pacman; // текстура
     sf::Color* color; // цвет пакмана
-    Direction direction;
-    Direction predirection;
+    Direction direction; // направление
+    Direction predirection; // пре-направление
     sf::Clock clock;
     int scores; // количество очков
     float time;
-    Map* map;
-    int PosX, PosY;
-    bool isCollision();
-    void resolveCollision(bool);
+    Map& map = Map::Instance();
+    int PosX, PosY; // вспомогательные переменные (позиция пакмана на тайл-мапе)
+    bool isCollision(); // проверка на коллизии
+    void resolveCollision(bool); // решение коллизий
     void update(float);
-    void eat();
-    float x, y, w, h, dx, dy, speed;
+    void eat(); // есть еду
+    float x, y, w, h, dx, dy, speed; // габариты
 
 public:
     void run();
     void draw(sf::RenderWindow *);
-    Charachter(int, int, int, int, Map*);
-    Charachter() {}
     float getX();
     float getY();
     Direction getDirection();
+    void setScores(int);
     int getScores();
+    static Charachter& Instance();
+
+private:
+    Charachter();
+    Charachter(const Charachter&) = delete;
+    Charachter&operator=(const Charachter&) = delete;
 };

@@ -3,14 +3,11 @@
 Game::Game() {
     window = new sf::RenderWindow(sf::VideoMode(600, 600), "Pacman");
     window->setPosition(sf::Vector2i(400, 400));
-    menu = new Menu();
-    map = new Map();
-    pacman = new Charachter(240, 456, 24, 24, map);
-    blinky =  new Blinky(264, 264, 24, 24, pacman, map); // красный
-    pinky = new Pinky(264, 312, 24, 24, pacman, map); // розовый
-    inkey = new Inkey(312, 264, 24, 24, pacman, map); // голубой
-    clyde = new Clyde(312, 312, 24, 24, pacman, map); // оранжевый
-    state = onResume;
+    factory = new GhostFactory();
+    blinky =  factory->getEnemy("blinky"); // красный
+    pinky = factory->getEnemy("pinky"); // розовый
+    inkey = factory->getEnemy("inkey"); // голубой
+    clyde = factory->getEnemy("clyde"); // оранжевый
 }
 
 void Game::run() {
@@ -23,38 +20,29 @@ void Game::run() {
                 window->close();
         }
 
-        // отрисовка меню
-        if (state == onMenu) {
-            window->clear();
-            menu->display(window);
-            menu->start();
-            window->display();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) state = onResume;
-            continue;
+        if (pacman.getScores() == 208) {
+            window->close();
         }
 
         // отрисовка игры
-        if (state == onResume) {
-            window->clear();
-            map->draw(window);
+        window->clear();
+        map.draw(window);
 
-            pacman->run();
-            pacman->draw(window);
+        pacman.run();
+        pacman.draw(window);
 
-            blinky->run();
-            animation->draw(blinky, window);
+        blinky->run();
+        animation->draw(blinky, window);
 
-            pinky->run();
-            animation->draw(pinky, window);
+        pinky->run();
+        animation->draw(pinky, window);
 
-            inkey->run();
-            animation->draw(inkey, window);
+        inkey->run();
+        animation->draw(inkey, window);
 
-            clyde->run();
-            animation->draw(clyde, window);
+        clyde->run();
+        animation->draw(clyde, window);
 
-            window->display();
-            continue;
-        }
+        window->display();
     }
 }

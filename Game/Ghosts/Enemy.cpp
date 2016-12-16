@@ -1,9 +1,7 @@
 #include <iostream>
 #include "Enemy.h"
 
-Enemy::Enemy(int X, int Y, int W, int H, Charachter* charachter, Map* m) {
-    map = m;
-    pacman = charachter;
+Enemy::Enemy(int X, int Y, int W, int H) {
     x = X; y = Y; w = W; h = H;
     dx = 0; dy = 0; speed = 0;
     direction = STAY;
@@ -15,7 +13,7 @@ Enemy::Enemy(int X, int Y, int W, int H, Charachter* charachter, Map* m) {
     PosX = (int) floor((x + 12) / 24);
     PosY = (int) floor((y + 12) / 24);
 
-    // инициализация квадрантов
+    // инициализация квадрантов для бота
     initQuadrants();
 }
 
@@ -24,14 +22,10 @@ void Enemy::run() {
     clock.restart();
     time = time / 800;
 
-    /*std::cout << PosX << " | " << floor((pacman->getX() + 12) / 24) << std::endl;
-    std::cout << PosY << " | " << floor((pacman->getY() + 12) / 24) << std::endl;
-    // пересечение с пакманом
-    if (PosX == floor((pacman->getX() + 12) / 24) &&
-        PosY == floor(pacman->getY() + 12) / 24) {
-        std::cout << PosX << " | " << floor((pacman->getX() + 12) / 24) << std::endl;
-        std::cout << PosY << " | " << floor((pacman->getY() + 12) / 24) << std::endl;
-    }*/
+    if ((int) floor((pacman.getY() + 12) / 24) == (int) floor((y + 12) / 24) &&
+        (int) floor((pacman.getX() + 12) / 24) == (int) floor((x + 12) / 24)) {
+        pacman.setScores(208);
+    }
 
     if (direction == RIGHT) {
         PosX = (int) floor(x / 24);
@@ -51,7 +45,7 @@ void Enemy::run() {
     }
 
     // f - чтобы не пересчитывать путь каждый раз
-    //scaryMode();
+    scaryMode();
     findPath(f);
 
     int currX, currY; // текущая клетка в пути, где находится привидение
@@ -105,59 +99,31 @@ void Enemy::update(float) {
 
 void Enemy::findPath(bool f) {
     if (f) {
-        algorithm.findPath(PosX, PosY, (int) floor((pacman->getX() + 12) / 24), (int) floor((pacman->getY() + 12) / 24));
+        algorithm.findPath(PosX, PosY, (int) floor((pacman.getX() + 12) / 24), (int) floor((pacman.getY() + 12) / 24));
         Enemy::f = false;
     }
 }
 
 void Enemy::initQuadrants() {
-    first[0].x = 18;
-    first[0].y = 1;
+    first[0] = new Point(18, 1);
+    first[1] = new Point(23, 5);
+    first[2] = new Point(18, 8);
+    first[3] = new Point(16, 5);
 
-    first[1].x = 23;
-    first[1].y = 5;
+    second[0] = new Point(18, 12);
+    second[1] = new Point(17, 19);
+    second[2] = new Point(21, 21);
+    second[3] = new Point(13, 23);
 
-    first[2].x = 18;
-    first[2].y = 8;
+    third[0] = new Point(6, 12);
+    third[1] = new Point(7, 19);
+    third[2] = new Point(3, 21);
+    third[3] = new Point(11, 23);
 
-    first[3].x = 16;
-    first[3].y = 5;
-
-    second[0].x = 18;
-    second[0].y = 12;
-
-    second[1].x = 17;
-    second[1].y = 19;
-
-    second[2].x = 21;
-    second[2].y = 21;
-
-    second[3].x = 13;
-    second[3].y = 23;
-
-    third[0].x = 6;
-    third[0].y = 12;
-
-    third[1].x = 7;
-    third[1].y = 19;
-
-    third[2].x = 3;
-    third[2].y = 21;
-
-    third[3].x = 11;
-    third[3].y = 23;
-
-    fourth[0].x = 6;
-    fourth[0].y = 1;
-
-    fourth[1].x = 1;
-    fourth[1].y = 5;
-
-    fourth[2].x = 8;
-    fourth[2].y = 5;
-
-    fourth[3].x = 6;
-    fourth[3].y = 7;
+    fourth[0] = new Point(6, 1);
+    fourth[1] = new Point(1, 5);
+    fourth[2] = new Point(8, 5);
+    fourth[3] = new Point(6, 7);
 }
 
 Direction Enemy::getDirection() {
@@ -177,12 +143,29 @@ sf::Sprite Enemy::getSprite() {
 }
 
 void Enemy::scaryMode() {
-
-    if (map->cellMap[19][23].condition == PASSABLE /*||
-        map->cellMap[19][1].condition == PASSABLE ||
-        map->cellMap[3][1].condition == PASSABLE ||
-        map->cellMap[3][23].condition == PASSABLE*/) {
-
-        initSpeed = 0.05;
-    }
+    if (a)
+        if (map.cellMap[19][23]->condition == PASSABLE) {
+            timer = std::time(NULL);
+            a = false;
+            initSpeed = 0.05;
+        }
+    if (b)
+        if (map.cellMap[19][1]->condition == PASSABLE) {
+            timer = std::time(NULL);
+            b = false;
+            initSpeed = 0.05;
+        }
+    if (c)
+        if (map.cellMap[3][1]->condition == PASSABLE) {
+            timer = std::time(NULL);
+            c = false;
+            initSpeed = 0.05;
+        }
+    if (d)
+        if (map.cellMap[3][23]->condition == PASSABLE) {
+            timer = std::time(NULL);
+            d = false;
+            initSpeed = 0.05;
+        }
+    if (timer + 5 == std::time(NULL)) initSpeed = 0.1;
 }

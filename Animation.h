@@ -2,7 +2,7 @@
 #define GAMEPROJECT_ANIMATION_H
 
 
-#include "Game/Enemy.h"
+#include "Game/Ghosts/Enemy.h"
 
 class Animation {
 public:

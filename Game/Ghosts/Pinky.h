@@ -2,11 +2,11 @@
 #define GAMEPROJECT_PINKY_H
 
 
-#include "../Enemy.h"
+#include "Enemy.h"
 
 class Pinky : public Enemy{
 public:
-    Pinky(int, int, int, int, Charachter*, Map*);
+    Pinky(int, int, int, int);
 
 private:
     Direction dir; // направление пакмана

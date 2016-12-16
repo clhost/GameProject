@@ -2,32 +2,21 @@
 #include <SFML/Graphics.hpp>
 #include "Map.h"
 #include "Charachter.h"
-#include "Enemy.h"
-#include "../Menu/Menu.h"
+#include "Ghosts/Enemy.h"
 #include "Ghosts/Blinky.h"
 #include "Ghosts/Pinky.h"
 #include "Ghosts/Inkey.h"
 #include "Ghosts/Clyde.h"
 #include "../Animation.h"
-
-enum GameState {
-    onResume,
-    onPaused,
-    onClose,
-    onMenu
-};
+#include "Ghosts/GhostFactory.h"
 
 class Game {
     sf::RenderWindow *window; // окно игры
-    Menu *menu; // окно меню
-    Map* map;
+    Map& map = Map::Instance();
     Animation* animation;
-    Charachter* pacman;
-    Blinky* blinky;
-    Pinky* pinky;
-    Inkey* inkey;
-    Clyde* clyde;
-    GameState state;
+    Charachter& pacman = Charachter::Instance();
+    GhostFactory* factory;
+    Enemy *blinky, *pinky, *inkey, *clyde;
 public:
     void run();
     Game();

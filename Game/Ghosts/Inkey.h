@@ -2,11 +2,11 @@
 #define GAMEPROJECT_INKEY_H
 
 
-#include "../Enemy.h"
+#include "Enemy.h"
 
 class Inkey : public Enemy {
 public:
-    Inkey(int, int, int, int, Charachter*, Map*);
+    Inkey(int, int, int, int);
 
 private:
     void findPath(bool);

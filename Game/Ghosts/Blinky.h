@@ -2,11 +2,11 @@
 #define GAMEPROJECT_BLINKY_H
 
 
-#include "../Enemy.h"
+#include "Enemy.h"
 
 class Blinky : public Enemy {
 public:
-    Blinky(int, int, int, int, Charachter*, Map*);
+    Blinky(int, int, int, int);
 
 private:
     void findPath(bool);

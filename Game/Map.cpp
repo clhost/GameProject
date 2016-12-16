@@ -57,53 +57,38 @@ void Map::createCellMap() {
             // стена
             if (map[i][j] == '1') {
                 /* init cells */
-                cellMap[i][j].uL.x = j * 24;
-                cellMap[i][j].uL.y = i * 24;
-                cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
-                cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = IMPASSABLE;
-
+                cellMap[i][j] = new Cell(new Point(j * 24, i * 24), new Point(j * 24 + 24, i * 24 + 24), IMPASSABLE);
             }
 
             // бонус
             if (map[i][j] == '0' || map[i][j] == ' ' || map[i][j] == '.') {
                 /* init cells */
-                cellMap[i][j].uL.x = j * 24;
-                cellMap[i][j].uL.y = i * 24;
-                cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
-                cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = SUPERFOOD;
+                cellMap[i][j] = new Cell(new Point(j * 24, i * 24), new Point(j * 24 + 24, i * 24 + 24), SUPERFOOD);
             }
 
             // дверь
             if (map[i][j] == 'e') {
                 /* init cells */
-                cellMap[i][j].uL.x = j * 24;
-                cellMap[i][j].uL.y = i * 24;
-                cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
-                cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = DOOR;
+                cellMap[i][j] = new Cell(new Point(j * 24, i * 24), new Point(j * 24 + 24, i * 24 + 24), DOOR);
             }
 
             // пустота
             if (map[i][j] == ' ') {
                 /* init cells */
-                cellMap[i][j].uL.x = j * 24;
-                cellMap[i][j].uL.y = i * 24;
-                cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
-                cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = PASSABLE;
+                cellMap[i][j] = new Cell(new Point(j * 24, i * 24), new Point(j * 24 + 24, i * 24 + 24), PASSABLE);
             }
 
             // еда
             if (map[i][j] == '.') {
                 /* init cells */
-                cellMap[i][j].uL.x = j * 24;
-                cellMap[i][j].uL.y = i * 24;
-                cellMap[i][j].uR.x = cellMap[i][j].uL.x + 24;
-                cellMap[i][j].uR.y = cellMap[i][j].uL.y + 24;
-                cellMap[i][j].condition = FOOD;
+                cellMap[i][j] = new Cell(new Point(j * 24, i * 24), new Point(j * 24 + 24, i * 24 + 24), FOOD);
             }
         }
+
     }
+}
+
+Map &Map::Instance() {
+    static Map singleMap;
+    return singleMap;
 }
