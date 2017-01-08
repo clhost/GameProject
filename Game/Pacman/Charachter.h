@@ -2,15 +2,15 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "../Other/Direction.h"
-#include "Map.h"
+#include "../../Other/Direction.h"
+#include "../Map/Map.h"
 #include <stack>
 #include <SFML/Graphics/Sprite.hpp>
 
 class Charachter {
 private:
-    sf::RectangleShape* pacman; // текстура
-    sf::Color* color; // цвет пакмана
+    sf::RectangleShape pacman; // текстура
+    sf::Color color; // цвет пакмана
     Direction direction; // направление
     Direction predirection; // пре-направление
     sf::Clock clock;
@@ -26,12 +26,12 @@ private:
 
 public:
     void run();
-    void draw(sf::RenderWindow *);
     float getX();
     float getY();
     Direction getDirection();
     void setScores(int);
     int getScores();
+    sf::RectangleShape getSprite();
     static Charachter& Instance();
 
 private:

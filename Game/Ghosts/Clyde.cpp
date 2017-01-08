@@ -27,16 +27,16 @@ void Clyde::findPath(bool f) {
 
             if (PosX >= 12 && PosY <= 12) {
                 if (k == 3) {
-                    pX = first[t]->x;
-                    pY = first[t]->y;
+                    pX = first[t].x;
+                    pY = first[t].y;
                 }
                 if (k == 1) {
-                    pX = fourth[t]->x;
-                    pY = fourth[t]->y;
+                    pX = fourth[t].x;
+                    pY = fourth[t].y;
                 }
                 if (k == 2) {
-                    pX = third[t]->x;
-                    pY = third[t]->y;
+                    pX = third[t].x;
+                    pY = third[t].y;
                 }
                 algorithm.findPath(PosX, PosY, pX, pY);
                 Enemy::f = false;
@@ -44,16 +44,16 @@ void Clyde::findPath(bool f) {
 
             if (PosX >= 12 && PosY >= 12) {
                 if (k == 3) {
-                    pX = second[t]->x;
-                    pY = second[t]->y;
+                    pX = second[t].x;
+                    pY = second[t].y;
                 }
                 if (k == 1) {
-                    pX = first[t]->x;
-                    pY = first[t]->y;
+                    pX = first[t].x;
+                    pY = first[t].y;
                 }
                 if (k == 2) {
-                    pX = fourth[t]->x;
-                    pY = fourth[t]->y;
+                    pX = fourth[t].x;
+                    pY = fourth[t].y;
                 }
                 algorithm.findPath(PosX, PosY, pX, pY);
                 Enemy::f = false;
@@ -61,16 +61,16 @@ void Clyde::findPath(bool f) {
 
             if (PosX <= 12 && PosY >= 12) {
                 if (k == 3) {
-                    pX = third[t]->x;
-                    pY = third[t]->y;
+                    pX = third[t].x;
+                    pY = third[t].y;
                 }
                 if (k == 1) {
-                    pX = second[t]->x;
-                    pY = second[t]->y;
+                    pX = second[t].x;
+                    pY = second[t].y;
                 }
                 if (k == 2) {
-                    pX = first[t]->x;
-                    pY = first[t]->y;
+                    pX = first[t].x;
+                    pY = first[t].y;
                 }
                 algorithm.findPath(PosX, PosY, pX, pY);
                 Enemy::f = false;
@@ -78,16 +78,16 @@ void Clyde::findPath(bool f) {
 
             if (PosX <= 12 && PosY <= 12) {
                 if (k == 3) {
-                    pX = fourth[t]->x;
-                    pY = fourth[t]->y;
+                    pX = fourth[t].x;
+                    pY = fourth[t].y;
                 }
                 if (k == 1) {
-                    pX = third[t]->x;
-                    pY = third[t]->y;
+                    pX = third[t].x;
+                    pY = third[t].y;
                 }
                 if (k == 2) {
-                    pX = second[t]->x;
-                    pY = second[t]->y;
+                    pX = second[t].x;
+                    pY = second[t].y;
                 }
                 algorithm.findPath(PosX, PosY, pX, pY);
                 Enemy::f = false;

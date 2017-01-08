@@ -3,11 +3,10 @@
 Game::Game() {
     window = new sf::RenderWindow(sf::VideoMode(600, 600), "Pacman");
     window->setPosition(sf::Vector2i(400, 400));
-    factory = new GhostFactory();
-    blinky =  factory->getEnemy("blinky"); // красный
-    pinky = factory->getEnemy("pinky"); // розовый
-    inkey = factory->getEnemy("inkey"); // голубой
-    clyde = factory->getEnemy("clyde"); // оранжевый
+    blinky = std::unique_ptr<Enemy> (factory.getEnemy("blinky")); // красный
+    pinky = std::unique_ptr<Enemy> (factory.getEnemy("pinky")); // розовый
+    inkey = std::unique_ptr<Enemy> (factory.getEnemy("inkey")); // голубой
+    clyde = std::unique_ptr<Enemy> (factory.getEnemy("clyde")); // оранжевый
 }
 
 void Game::run() {
@@ -29,19 +28,19 @@ void Game::run() {
         map.draw(window);
 
         pacman.run();
-        pacman.draw(window);
+        Animation().draw(pacman, window);
 
         blinky->run();
-        animation->draw(blinky, window);
+        Animation().draw(blinky, window);
 
         pinky->run();
-        animation->draw(pinky, window);
+        Animation().draw(pinky, window);
 
         inkey->run();
-        animation->draw(inkey, window);
+        Animation().draw(inkey, window);
 
         clyde->run();
-        animation->draw(clyde, window);
+        Animation().draw(clyde, window);
 
         window->display();
     }

@@ -3,7 +3,7 @@ project(GameProject)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp Game/Game.cpp Game/Game.h Game/Map.cpp Game/Map.h Game/Charachter.cpp Game/Charachter.h Animation.cpp Animation.h Other/Direction.h Game/Ghosts/Enemy.cpp Game/Ghosts/Enemy.h Other/Point.h Algorithms/WaveTracingAlgorithm.cpp Algorithms/WaveTracingAlgorithm.h Game/Ghosts/Blinky.cpp Game/Ghosts/Blinky.h Game/Ghosts/Pinky.cpp Game/Ghosts/Pinky.h Game/Ghosts/Inkey.cpp Game/Ghosts/Inkey.h Game/Ghosts/Clyde.cpp Game/Ghosts/Clyde.h Game/Ghosts/GhostFactory.cpp Game/Ghosts/GhostFactory.h)
+set(SOURCE_FILES main.cpp Game/Game.cpp Game/Game.h Game/Map/Map.cpp Game/Map/Map.h Game/Pacman/Charachter.cpp Game/Pacman/Charachter.h Draw/Animation.cpp Draw/Animation.h Other/Direction.h Game/Ghosts/Enemy.cpp Game/Ghosts/Enemy.h Other/Point.h Algorithms/WaveTracingAlgorithm.cpp Algorithms/WaveTracingAlgorithm.h Game/Ghosts/Blinky.cpp Game/Ghosts/Blinky.h Game/Ghosts/Pinky.cpp Game/Ghosts/Pinky.h Game/Ghosts/Inkey.cpp Game/Ghosts/Inkey.h Game/Ghosts/Clyde.cpp Game/Ghosts/Clyde.h Game/Ghosts/GhostFactory.cpp Game/Ghosts/GhostFactory.h)
 set(EXECUTABLE_NAME "GameProject")
 add_executable(GameProject ${SOURCE_FILES})
 

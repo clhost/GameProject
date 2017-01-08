@@ -2,7 +2,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/System/String.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "../Other/Point.h"
+#include "../../Other/Point.h"
 #include <string>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -11,10 +11,10 @@ class Map {
     const static int HEIGHT_MAP = 25; // 25
     const static int WEIGHT_MAP = 25; // 25
 private:
-    sf::RectangleShape* rect; // текстура
-    sf::Color* colorWall; // цвет стен (синий)
-    sf::Color* colorSpace; // цвет пустоты (черный)
-    sf::Color* colorExit; // цвет двери дома призраков (желтый)
+    sf::RectangleShape rect; // текстура
+    sf::Color colorWall; // цвет стен (синий)
+    sf::Color colorSpace; // цвет пустоты (черный)
+    sf::Color colorExit; // цвет двери дома призраков (желтый)
 
     sf::Texture texture; // точка
     sf::Sprite sprite; // спрайт точки
@@ -54,5 +54,5 @@ public:
             "1111111111111111111111111"
     };
     void draw(sf::RenderWindow *);
-    Cell* cellMap[HEIGHT_MAP][WEIGHT_MAP];
+    Cell cellMap[HEIGHT_MAP][WEIGHT_MAP];
 };

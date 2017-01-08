@@ -2,12 +2,13 @@
 #define GAMEPROJECT_ANIMATION_H
 
 
-#include "Game/Ghosts/Enemy.h"
+#include "../Game/Ghosts/Enemy.h"
 
 class Animation {
 public:
     Animation() {};
-    void draw(Enemy*, sf::RenderWindow*);
+    void draw(std::unique_ptr<Enemy>&, sf::RenderWindow*);
+    void draw(Charachter&, sf::RenderWindow*);
 };
 
 

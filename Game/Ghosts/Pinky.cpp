@@ -18,7 +18,7 @@ void Pinky::findPath(bool f) {
             pY = (int) floor((pacman.getY() + 12) / 24);
 
             if (pX >= 1 && pX <= 23 &&
-                    map.cellMap[pY][pX]->condition == PASSABLE) {
+                    map.cellMap[pY][pX].condition == PASSABLE) {
                 algorithm.findPath(PosX, PosY, pX, pY);
             } else {
                 algorithm.findPath(PosX, PosY,
@@ -32,7 +32,7 @@ void Pinky::findPath(bool f) {
             pY = (int) floor((pacman.getY() + 12) / 24);
 
             if (pX >= 1 && pX <= 23 &&
-                map.cellMap[pY][pX]->condition == PASSABLE) {
+                map.cellMap[pY][pX].condition == PASSABLE) {
                 algorithm.findPath(PosX, PosY, pX, pY);
             } else {
                 algorithm.findPath(PosX, PosY,
@@ -46,7 +46,7 @@ void Pinky::findPath(bool f) {
             pY = (int) floor((pacman.getY() + 12) / 24) - 2;
 
             if (pY >= 1 && pY <= 23 &&
-                map.cellMap[pY][pX]->condition == PASSABLE) {
+                map.cellMap[pY][pX].condition == PASSABLE) {
                 algorithm.findPath(PosX, PosY, pX, pY);
             } else {
                 algorithm.findPath(PosX, PosY,
@@ -60,7 +60,7 @@ void Pinky::findPath(bool f) {
             pY = (int) floor((pacman.getY() + 12) / 24) + 2;
 
             if (pY >= 1 && pY <= 23 &&
-                map.cellMap[pY][pX]->condition == PASSABLE) {
+                map.cellMap[pY][pX].condition == PASSABLE) {
                 algorithm.findPath(PosX, PosY, pX, pY);
             } else {
                 algorithm.findPath(PosX, PosY,

@@ -1,13 +1,12 @@
-#include <iostream>
 #include "Charachter.h"
 
 Charachter::Charachter() {
     x = 240; y = 456; w = 24; h = 24;
     dx = 0; dy = 0; speed = 0;
-    pacman = new sf::RectangleShape(sf::Vector2f(w, h));
-    color = new sf::Color(255, 235, 59);
-    pacman->setFillColor(*color);
-    pacman->setPosition(x, y);
+    pacman = sf::RectangleShape(sf::Vector2f(w, h));
+    color = sf::Color(255, 235, 59);
+    pacman.setFillColor(color);
+    pacman.setPosition(x, y);
     direction = RIGHT;
     predirection = STAY;
     scores = 0;
@@ -47,26 +46,26 @@ void Charachter::run() {
         if (predirection == RIGHT) direction = RIGHT;
 
         if (predirection == UP)
-            if (map.cellMap[PosY - 1][PosX]->condition == PASSABLE ||
-                map.cellMap[PosY - 1][PosX]->condition == FOOD ||
-                map.cellMap[PosY - 1][PosX]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY - 1][PosX].condition == PASSABLE ||
+                map.cellMap[PosY - 1][PosX].condition == FOOD ||
+                map.cellMap[PosY - 1][PosX].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY - 1][xX]->condition == PASSABLE ||
-                    map.cellMap[yY - 1][xX]->condition == FOOD ||
-                    map.cellMap[yY - 1][xX]->condition == SUPERFOOD) {
+                if (map.cellMap[yY - 1][xX].condition == PASSABLE ||
+                    map.cellMap[yY - 1][xX].condition == FOOD ||
+                    map.cellMap[yY - 1][xX].condition == SUPERFOOD) {
                     x = x - 1;
                     direction = predirection;
                 }
             }
 
         if (predirection == DOWN)
-            if (map.cellMap[PosY + 1][PosX]->condition == PASSABLE ||
-                map.cellMap[PosY + 1][PosX]->condition == FOOD ||
-                map.cellMap[PosY + 1][PosX]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY + 1][PosX].condition == PASSABLE ||
+                map.cellMap[PosY + 1][PosX].condition == FOOD ||
+                map.cellMap[PosY + 1][PosX].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY + 1][xX]->condition == PASSABLE ||
-                    map.cellMap[yY + 1][xX]->condition == FOOD ||
-                    map.cellMap[yY + 1][xX]->condition == SUPERFOOD) {
+                if (map.cellMap[yY + 1][xX].condition == PASSABLE ||
+                    map.cellMap[yY + 1][xX].condition == FOOD ||
+                    map.cellMap[yY + 1][xX].condition == SUPERFOOD) {
                     x = x - 1;
                     direction = predirection;
                 }
@@ -84,25 +83,25 @@ void Charachter::run() {
         if (predirection == LEFT) direction = LEFT;
 
         if (predirection == UP)
-            if (map.cellMap[PosY - 1][PosX]->condition == PASSABLE ||
-                map.cellMap[PosY - 1][PosX]->condition == FOOD ||
-                map.cellMap[PosY - 1][PosX]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY - 1][PosX].condition == PASSABLE ||
+                map.cellMap[PosY - 1][PosX].condition == FOOD ||
+                map.cellMap[PosY - 1][PosX].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY - 1][xX]->condition == PASSABLE ||
-                    map.cellMap[yY - 1][xX]->condition == FOOD ||
-                    map.cellMap[yY - 1][xX]->condition == SUPERFOOD) {
+                if (map.cellMap[yY - 1][xX].condition == PASSABLE ||
+                    map.cellMap[yY - 1][xX].condition == FOOD ||
+                    map.cellMap[yY - 1][xX].condition == SUPERFOOD) {
                     direction = predirection;
                 }
             }
 
         if (predirection == DOWN)
-            if (map.cellMap[PosY + 1][PosX]->condition == PASSABLE ||
-                map.cellMap[PosY + 1][PosX]->condition == FOOD ||
-                map.cellMap[PosY + 1][PosX]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY + 1][PosX].condition == PASSABLE ||
+                map.cellMap[PosY + 1][PosX].condition == FOOD ||
+                map.cellMap[PosY + 1][PosX].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY + 1][xX]->condition == PASSABLE ||
-                    map.cellMap[yY + 1][xX]->condition == FOOD ||
-                    map.cellMap[yY + 1][xX]->condition == SUPERFOOD) {
+                if (map.cellMap[yY + 1][xX].condition == PASSABLE ||
+                    map.cellMap[yY + 1][xX].condition == FOOD ||
+                    map.cellMap[yY + 1][xX].condition == SUPERFOOD) {
                     direction = predirection;
                 }
             }
@@ -119,25 +118,25 @@ void Charachter::run() {
         if (predirection == DOWN) direction = DOWN;
 
         if (predirection == RIGHT)
-            if (map.cellMap[PosY][PosX + 1]->condition == PASSABLE ||
-                map.cellMap[PosY][PosX + 1]->condition == FOOD ||
-                map.cellMap[PosY][PosX + 1]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY][PosX + 1].condition == PASSABLE ||
+                map.cellMap[PosY][PosX + 1].condition == FOOD ||
+                map.cellMap[PosY][PosX + 1].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY][xX + 1]->condition == PASSABLE ||
-                    map.cellMap[yY][xX + 1]->condition == FOOD ||
-                    map.cellMap[yY][xX + 1]->condition == SUPERFOOD) {
+                if (map.cellMap[yY][xX + 1].condition == PASSABLE ||
+                    map.cellMap[yY][xX + 1].condition == FOOD ||
+                    map.cellMap[yY][xX + 1].condition == SUPERFOOD) {
                     direction = predirection;
                 }
             }
 
         if (predirection == LEFT)
-            if (map.cellMap[PosY][PosX - 1]->condition == PASSABLE ||
-                map.cellMap[PosY][PosX - 1]->condition == FOOD ||
-                map.cellMap[PosY][PosX - 1]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY][PosX - 1].condition == PASSABLE ||
+                map.cellMap[PosY][PosX - 1].condition == FOOD ||
+                map.cellMap[PosY][PosX - 1].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY][xX - 1]->condition == PASSABLE ||
-                    map.cellMap[yY][xX - 1]->condition == FOOD ||
-                    map.cellMap[yY][xX - 1]->condition == SUPERFOOD) {
+                if (map.cellMap[yY][xX - 1].condition == PASSABLE ||
+                    map.cellMap[yY][xX - 1].condition == FOOD ||
+                    map.cellMap[yY][xX - 1].condition == SUPERFOOD) {
                     direction = predirection;
                 }
             }
@@ -154,25 +153,25 @@ void Charachter::run() {
         if (predirection == UP) direction = UP;
 
         if (predirection == RIGHT)
-            if (map.cellMap[PosY][PosX + 1]->condition == PASSABLE ||
-                map.cellMap[PosY][PosX + 1]->condition == FOOD ||
-                map.cellMap[PosY][PosX + 1]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY][PosX + 1].condition == PASSABLE ||
+                map.cellMap[PosY][PosX + 1].condition == FOOD ||
+                map.cellMap[PosY][PosX + 1].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY][xX + 1]->condition == PASSABLE ||
-                    map.cellMap[yY][xX + 1]->condition == FOOD ||
-                    map.cellMap[yY][xX + 1]->condition == SUPERFOOD) {
+                if (map.cellMap[yY][xX + 1].condition == PASSABLE ||
+                    map.cellMap[yY][xX + 1].condition == FOOD ||
+                    map.cellMap[yY][xX + 1].condition == SUPERFOOD) {
                     direction = predirection;
                 }
             }
 
         if (predirection == LEFT)
-            if (map.cellMap[PosY][PosX - 1]->condition == PASSABLE ||
-                map.cellMap[PosY][PosX - 1]->condition == FOOD ||
-                map.cellMap[PosY][PosX - 1]->condition == SUPERFOOD) {
+            if (map.cellMap[PosY][PosX - 1].condition == PASSABLE ||
+                map.cellMap[PosY][PosX - 1].condition == FOOD ||
+                map.cellMap[PosY][PosX - 1].condition == SUPERFOOD) {
 
-                if (map.cellMap[yY][xX - 1]->condition == PASSABLE ||
-                    map.cellMap[yY][xX - 1]->condition == FOOD ||
-                    map.cellMap[yY][xX - 1]->condition == SUPERFOOD) {
+                if (map.cellMap[yY][xX - 1].condition == PASSABLE ||
+                    map.cellMap[yY][xX - 1].condition == FOOD ||
+                    map.cellMap[yY][xX - 1].condition == SUPERFOOD) {
                     direction = predirection;
                 }
             }
@@ -187,10 +186,6 @@ void Charachter::run() {
     update(time);
 }
 
-void Charachter::draw(sf::RenderWindow* window) {
-    window->draw(*pacman);
-}
-
 void Charachter::update(float time) {
     switch (direction) {
         case RIGHT: dx = speed; dy = 0; break;
@@ -203,17 +198,17 @@ void Charachter::update(float time) {
     y += dy * time;
     eat();
     resolveCollision(isCollision());
-    pacman->setPosition(x, y);
+    pacman.setPosition(x, y);
 }
 
 void Charachter::eat() {
     PosX = (int) floor((x + 12) / 24);
     PosY = (int) floor((y + 12) / 24);
 
-    if (map.cellMap[PosY][PosX]->condition == FOOD ||
-            map.cellMap[PosY][PosX]->condition == SUPERFOOD) {
+    if (map.cellMap[PosY][PosX].condition == FOOD ||
+            map.cellMap[PosY][PosX].condition == SUPERFOOD) {
         map.map[PosY][PosX] = ' ';
-        map.cellMap[PosY][PosX]->condition = PASSABLE;
+        map.cellMap[PosY][PosX].condition = PASSABLE;
         scores++;
     }
 }
@@ -223,22 +218,22 @@ bool Charachter::isCollision() {
     if (direction == RIGHT) {
         PosX = (int) floor((x + 24) / 24);
         PosY = (int) floor((y + 12) / 24);
-        if (map.cellMap[PosY][PosX]->condition == IMPASSABLE) return true;
+        if (map.cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     else if (direction == DOWN) {
         PosX = (int) floor((x + 12) / 24);
         PosY = (int) floor((y + 24) / 24);
-        if (map.cellMap[PosY][PosX]->condition == IMPASSABLE) return true;
+        if (map.cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     else if (direction == LEFT) {
         PosX = (int) floor(x / 24);
         PosY = (int) floor((y + 12) / 24);
-        if (map.cellMap[PosY][PosX]->condition == IMPASSABLE) return true;
+        if (map.cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     else if (direction == UP) {
         PosX = (int) floor((x + 12) / 24);
         PosY = (int) floor(y / 24);
-        if (map.cellMap[PosY][PosX]->condition == IMPASSABLE) return true;
+        if (map.cellMap[PosY][PosX].condition == IMPASSABLE) return true;
     }
     return false;
 }
@@ -248,22 +243,22 @@ void Charachter::resolveCollision(bool f) {
         if (direction == LEFT) {
             PosX = (int) floor(x / 24);
             PosY = (int) floor((y + 12) / 24);
-            x = map.cellMap[PosY][PosX]->uR->x; //останавливаем движение по х влево
+            x = map.cellMap[PosY][PosX].uR.x; //останавливаем движение по х влево
         }
         if (direction == RIGHT) {
             PosX = (int) floor((x + 24) / 24);
             PosY = (int) floor((y + 12) / 24);
-            x = map.cellMap[PosY][PosX]->uL->x - 24; //останавливаем движение по х вправо
+            x = map.cellMap[PosY][PosX].uL.x - 24; //останавливаем движение по х вправо
         }
         if (direction == DOWN) {
             PosX = (int) floor((x + 12) / 24);
             PosY = (int) floor((y + 24) / 24);
-            y = map.cellMap[PosY][PosX]->uL->y - 24; //останавливаем движение по y вниз
+            y = map.cellMap[PosY][PosX].uL.y - 24; //останавливаем движение по y вниз
         }
         if (direction == UP) {
             PosX = (int) floor((x + 12) / 24);
             PosY = (int) floor(y / 24);
-            y = map.cellMap[PosY][PosX]->uR->y; //останавливаем движение по y вверх
+            y = map.cellMap[PosY][PosX].uR.y; //останавливаем движение по y вверх
         }
         direction = STAY;
     } else return;
@@ -294,3 +289,6 @@ void Charachter::setScores(int s) {
     this->scores = s;
 }
 
+sf::RectangleShape Charachter::getSprite() {
+    return pacman;
+}

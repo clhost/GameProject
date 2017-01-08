@@ -71,5 +71,5 @@ void WaveTracingAlgorithm::arrayCopy() {
         for (int j = 0; j < width; j++) {
             Grid[i][j] = G[i][j];
         }
-    }
+    } //memcpy memcpy_s
 }

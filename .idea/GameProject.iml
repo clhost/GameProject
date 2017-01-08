@@ -5,16 +5,15 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SFML-2.4.0/share/SFML/cmake/Modules/FindSFML.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Other/Direction.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Other/Point.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Animation.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Algorithms/WaveTracingAlgorithm.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Algorithms/WaveTracingAlgorithm.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Animation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Game/Map.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Game/Charachter.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Draw/Animation.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Draw/Animation.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Other/Direction.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Other/Point.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/Game.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Game/Game.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game/Map/Map.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game/Map/Map.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/Ghosts/Inkey.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/Ghosts/Enemy.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/Ghosts/GhostFactory.cpp" isTestSource="false" />
@@ -27,8 +26,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Game/Ghosts/Clyde.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/Ghosts/Clyde.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Game/Ghosts/Blinky.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Game/Map.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Game/Charachter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game/Pacman/Charachter.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game/Pacman/Charachter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Game/Game.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

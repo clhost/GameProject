@@ -2,8 +2,7 @@
 
 int main() {
 
-    Game* game = new Game();
-    game->run();
+    Game().run();
 
     return 0;
 }

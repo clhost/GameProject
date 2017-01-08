@@ -97,33 +97,28 @@ void Enemy::update(float) {
     sprite.setPosition(x, y);
 }
 
-void Enemy::findPath(bool f) {
-    if (f) {
-        algorithm.findPath(PosX, PosY, (int) floor((pacman.getX() + 12) / 24), (int) floor((pacman.getY() + 12) / 24));
-        Enemy::f = false;
-    }
-}
+void Enemy::findPath(bool) {}
 
 void Enemy::initQuadrants() {
-    first[0] = new Point(18, 1);
-    first[1] = new Point(23, 5);
-    first[2] = new Point(18, 8);
-    first[3] = new Point(16, 5);
+    first[0] = Point(18, 1);
+    first[1] = Point(23, 5);
+    first[2] = Point(18, 8);
+    first[3] = Point(16, 5);
 
-    second[0] = new Point(18, 12);
-    second[1] = new Point(17, 19);
-    second[2] = new Point(21, 21);
-    second[3] = new Point(13, 23);
+    second[0] = Point(18, 12);
+    second[1] = Point(17, 19);
+    second[2] = Point(21, 21);
+    second[3] = Point(13, 23);
 
-    third[0] = new Point(6, 12);
-    third[1] = new Point(7, 19);
-    third[2] = new Point(3, 21);
-    third[3] = new Point(11, 23);
+    third[0] = Point(6, 12);
+    third[1] = Point(7, 19);
+    third[2] = Point(3, 21);
+    third[3] = Point(11, 23);
 
-    fourth[0] = new Point(6, 1);
-    fourth[1] = new Point(1, 5);
-    fourth[2] = new Point(8, 5);
-    fourth[3] = new Point(6, 7);
+    fourth[0] = Point(6, 1);
+    fourth[1] = Point(1, 5);
+    fourth[2] = Point(8, 5);
+    fourth[3] = Point(6, 7);
 }
 
 Direction Enemy::getDirection() {
@@ -144,25 +139,25 @@ sf::Sprite Enemy::getSprite() {
 
 void Enemy::scaryMode() {
     if (a)
-        if (map.cellMap[19][23]->condition == PASSABLE) {
+        if (map.cellMap[19][23].condition == PASSABLE) {
             timer = std::time(NULL);
             a = false;
             initSpeed = 0.05;
         }
     if (b)
-        if (map.cellMap[19][1]->condition == PASSABLE) {
+        if (map.cellMap[19][1].condition == PASSABLE) {
             timer = std::time(NULL);
             b = false;
             initSpeed = 0.05;
         }
     if (c)
-        if (map.cellMap[3][1]->condition == PASSABLE) {
+        if (map.cellMap[3][1].condition == PASSABLE) {
             timer = std::time(NULL);
             c = false;
             initSpeed = 0.05;
         }
     if (d)
-        if (map.cellMap[3][23]->condition == PASSABLE) {
+        if (map.cellMap[3][23].condition == PASSABLE) {
             timer = std::time(NULL);
             d = false;
             initSpeed = 0.05;
