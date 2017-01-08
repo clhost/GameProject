@@ -19,4 +19,5 @@ class Game {
 public:
     void run();
     Game();
+    ~Game();
 };

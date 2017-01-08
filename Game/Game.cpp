@@ -45,3 +45,7 @@ void Game::run() {
         window->display();
     }
 }
+
+Game::~Game() {
+    delete window;
+}
